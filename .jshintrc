@@ -1,0 +1,11 @@
+{
+    "esversion": 6,
+    "strict": true,
+    "loopfunc": true,
+    "sub": true,
+    "undef": true,
+    "unused": true,
+    "node": true,
+    "curly" : true,
+    "eqeqeq": true
+  }
