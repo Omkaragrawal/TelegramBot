@@ -2,6 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const fs = require('fs');
 const bodyparser = require('body-parser');
 const compression = require('compression');
 const helmet = require('helmet');
@@ -11,7 +12,8 @@ require('dotenv').config()
 const app = express();
 const port = process.env.PORT;
 const token = process.env.token;
-const url = "https://be9b4ea7.ngrok.io";
+const url = "https://telegram----bot.herokuapp.com/";
+let Messages = "";
 
 app.use(bodyparser.json());
 app.use(morgan('combined'));
@@ -34,4 +36,25 @@ app.listen(port, () => { console.log(`Our site is hosted on ${port}! If you dono
 bot.on('message', msg => {
     bot.sendMessage(msg.chat.id, 'I am alive!'+msg.chat.id+` \n\n ${msg.message_id}`);
     console.log("\n"+JSON.stringify(msg));
+
+    if (msg.document) {
+      bot.getFile(msg.document.file_id)
+      .then(file => {
+        console.log(file);
+        Messages = 
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    } else if(msg.text !== 'delete'){
+    Messages = msg.text;
+    } else if (msg.text === 'delete') {Messages = ""}
   });
+
+  app.get('/', (req, res) => {
+    if(Messages.file_id) {
+      res.sendFile(Messages);
+    } else {
+    res.send(Messages);
+    }
+  })
