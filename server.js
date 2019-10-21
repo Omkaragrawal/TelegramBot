@@ -37,16 +37,7 @@ bot.on('message', msg => {
     bot.sendMessage(msg.chat.id, 'I am alive!'+msg.chat.id+` \n\n ${msg.message_id}`);
     console.log("\n"+JSON.stringify(msg));
 
-    if (msg.document) {
-      bot.getFile(msg.document.file_id)
-      .then(file => {
-        console.log(file);
-        Messages = 
-      })
-      .catch(err => {
-        console.log(err);
-      })
-    } else if(msg.text !== 'delete'){
+    if(msg.text !== 'delete'){
     Messages = msg.text;
     } else if (msg.text === 'delete') {Messages = ""}
   });
