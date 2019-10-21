@@ -7,7 +7,6 @@ const bodyparser = require('body-parser');
 const compression = require('compression');
 const helmet = require('helmet');
 const TelegramBot = require('node-telegram-bot-api');
-require('dotenv').config()
 
 const app = express();
 const port = process.env.PORT;
